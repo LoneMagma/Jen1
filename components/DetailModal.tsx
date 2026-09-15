@@ -220,7 +220,7 @@ export default function DetailModal() {
           <div ref={scrollRef} className="overflow-y-auto flex-1 px-6 sm:px-8 pt-5 pb-8">
             {loading && !item ? (
               <div className="h-32 flex items-center justify-center">
-                <div className="w-5 h-5 rounded-full border-2 border-jen1-red/30 border-t-jen1-red animate-spin" />
+                <div className="w-5 h-5 rounded-full border-2 border-gen1-red/30 border-t-gen1-red animate-spin" />
               </div>
             ) : item ? (
               <>
@@ -311,7 +311,7 @@ export default function DetailModal() {
                             }}
                             className={`group/ep text-left rounded-xl overflow-hidden border transition-all ${
                               ep.episode_number === selectedEpisode
-                                ? 'border-jen1-red/50 bg-jen1-red/10'
+                                ? 'border-gen1-red/50 bg-gen1-red/10'
                                 : 'border-white/08 hover:border-white/20 bg-white/02'
                             }`}
                           >
@@ -332,7 +332,7 @@ export default function DetailModal() {
                                 <Play size={22} fill="white" className="text-white opacity-0 group-hover/ep:opacity-100 transition-opacity" />
                               </div>
                               <span className={`absolute top-1.5 left-1.5 w-5 h-5 rounded-md flex items-center justify-center text-[10px] font-bold ${
-                                ep.episode_number === selectedEpisode ? 'bg-jen1-red text-white' : 'bg-black/70 text-white/70'
+                                ep.episode_number === selectedEpisode ? 'bg-gen1-red text-white' : 'bg-black/70 text-white/70'
                               }`}>
                                 {ep.episode_number}
                               </span>

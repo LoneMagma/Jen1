@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const { details } = data
   const title = `${getTitle(details)} (${getReleaseYear(details)})`
-  const description = details.overview || `Watch ${getTitle(details)} on Jen1.`
+  const description = details.overview || `Watch ${getTitle(details)} on Gen1.`
 
   return {
     title,
@@ -61,7 +61,7 @@ export default async function MoviePage({ params }: Props) {
   const { details, videos, credits, recommendations } = data
 
   return (
-    <main className="bg-jen1-black">
+    <main className="bg-gen1-black">
       <GlassHeader />
       <DetailPage
         item={details}

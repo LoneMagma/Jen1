@@ -61,12 +61,12 @@ export default function MovieRow({
     <div onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
       <div className="flex items-center justify-between mb-4 min-h-[28px]">
         <div className="flex items-center gap-2.5">
-          {accent && <div className="w-0.5 h-5 bg-jen1-red rounded-full flex-shrink-0" />}
+          {accent && <div className="w-0.5 h-5 bg-gen1-red rounded-full flex-shrink-0" />}
           <h2 className="font-archivo font-extrabold text-display-md text-white">{title}</h2>
           {exploreHref && (
             <Link
               href={exploreHref}
-              className={`text-white/40 hover:text-jen1-red text-xs font-medium transition-all ${
+              className={`text-white/40 hover:text-gen1-red text-xs font-medium transition-all ${
                 hovered ? 'opacity-100' : 'opacity-0'
               }`}
             >
@@ -83,7 +83,7 @@ export default function MovieRow({
                 onClick={() => applyFilter(i)}
                 className={`text-[11px] font-medium px-2.5 py-1 rounded-full border transition-all ${
                   activeFilter === i
-                    ? 'bg-jen1-red/15 border-jen1-red/40 text-jen1-red'
+                    ? 'bg-gen1-red/15 border-gen1-red/40 text-gen1-red'
                     : 'bg-white/04 border-white/10 text-white/45 hover:text-white hover:bg-white/10'
                 }`}
               >

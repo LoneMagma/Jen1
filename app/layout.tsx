@@ -43,7 +43,7 @@ const archivo = Archivo({
 })
 
 const SITE_URL = 'https://jen1.vercel.app'
-const SITE_NAME = 'Jen1'
+const SITE_NAME = 'Gen1'
 const DESCRIPTION = 'Discover and stream movies and series — a cinematic experience built for the discerning viewer.'
 
 export const viewport: Viewport = {
@@ -62,11 +62,11 @@ export const metadata: Metadata = {
   description: DESCRIPTION,
   keywords: [
     'movies', 'streaming', 'watch online', 'series', 'films',
-    'cinema', 'trailers', 'Jen1', 'movie discovery', 'free streaming',
+    'cinema', 'trailers', 'Gen1', 'movie discovery', 'free streaming',
   ],
-  authors: [{ name: 'Jen1' }],
-  creator: 'Jen1',
-  publisher: 'Jen1',
+  authors: [{ name: 'Gen1' }],
+  creator: 'Gen1',
+  publisher: 'Gen1',
   robots: {
     index: true,
     follow: true,
@@ -77,8 +77,8 @@ export const metadata: Metadata = {
       { url: '/favicon.ico',      sizes: 'any',             type: 'image/x-icon' },
       { url: '/favicon-16.png',   sizes: '16x16',           type: 'image/png' },
       { url: '/favicon-32.png',   sizes: '32x32',           type: 'image/png' },
-      { url: '/jen1-icon-512.png', sizes: '512x512',        type: 'image/png' },
-      { url: '/jen1-logo.svg',    type: 'image/svg+xml' },
+      { url: '/gen1-icon-512.png', sizes: '512x512',        type: 'image/png' },
+      { url: '/gen1-logo.svg',    type: 'image/svg+xml' },
     ],
     apple: [
       { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
@@ -98,7 +98,7 @@ export const metadata: Metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Jen1 (Trust Me Bro)',
+        alt: 'Gen1 (Trust Me Bro)',
       },
     ],
   },
@@ -117,7 +117,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" data-scroll-behavior="smooth" className={`${inter.variable} ${archivo.variable} ${jakarta.variable} ${jbMono.variable}`}>
-      <body className="relative bg-jen1-black text-white font-inter antialiased">
+      <body className="relative bg-gen1-black text-white font-inter antialiased">
         {/* Ambient glow layer — sits behind everything, fixed, non-interactive */}
         <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
           <div className="absolute -top-40 -left-40 h-[560px] w-[560px] rounded-full bg-glow-indigo/20 blur-[120px]" />

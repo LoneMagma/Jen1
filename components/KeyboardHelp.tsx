@@ -49,7 +49,7 @@ export default function KeyboardHelp() {
         <div className="p-6 grid grid-cols-2 gap-6 max-h-[65vh] overflow-y-auto">
           {SHORTCUTS.map(group => (
             <div key={group.group}>
-              <div className="text-jen1-red text-[10px] font-semibold uppercase tracking-widest mb-3">{group.group}</div>
+              <div className="text-gen1-red text-[10px] font-semibold uppercase tracking-widest mb-3">{group.group}</div>
               <div className="space-y-2.5">
                 {group.items.map(item => (
                   <div key={item.desc} className="flex items-center justify-between gap-3">

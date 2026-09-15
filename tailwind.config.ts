@@ -9,12 +9,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'jen1-red': '#E50914',
-        'jen1-black': '#0A0A0A',
-        'jen1-dark': '#111111',
-        'jen1-card': '#181818',
-        'jen1-gray': '#B3B3B3',
-        'jen1-dimgray': '#4D4D4D',
+        'gen1-red': '#E50914',
+        'gen1-black': '#0A0A0A',
+        'gen1-dark': '#111111',
+        'gen1-card': '#181818',
+        'gen1-gray': '#B3B3B3',
+        'gen1-dimgray': '#4D4D4D',
         obsidian: '#09090b',
         'glow-indigo': '#4f46e5',
         'glow-cyan': '#0891b2',

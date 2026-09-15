@@ -200,7 +200,7 @@ export default function HeroBanner({ movies }: { movies: Movie[] }) {
         <div className="hero-actions-enter flex items-center gap-3">
           <button
             onClick={() => openModal(movie.id)}
-            className="flex items-center gap-2 bg-white text-jen1-black font-semibold px-6 py-3 rounded-md transition-all duration-150 hover:scale-[1.03] hover:bg-white/90 active:scale-100 shadow-lg"
+            className="flex items-center gap-2 bg-white text-gen1-black font-semibold px-6 py-3 rounded-md transition-all duration-150 hover:scale-[1.03] hover:bg-white/90 active:scale-100 shadow-lg"
           >
             <Play size={15} fill="currentColor" /> Play
           </button>
@@ -219,7 +219,7 @@ export default function HeroBanner({ movies }: { movies: Movie[] }) {
           <button
             key={i}
             onClick={() => { if (i !== idx) advance(i) }}
-            className={`h-0.5 rounded-full transition-all duration-300 ${i === idx ? 'w-8 bg-jen1-red' : 'w-5 bg-white/25 hover:bg-white/45'}`}
+            className={`h-0.5 rounded-full transition-all duration-300 ${i === idx ? 'w-8 bg-gen1-red' : 'w-5 bg-white/25 hover:bg-white/45'}`}
             aria-label={`Slide ${i + 1}`}
           />
         ))}

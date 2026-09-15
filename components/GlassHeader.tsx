@@ -54,8 +54,8 @@ export default function GlassHeader() {
             scrolled ? 'bg-zinc-900/60' : ''
           }`}
         >
-          <Link href="/" className="flex-shrink-0 select-none pl-2" aria-label="Jen1 home">
-            <Image src="/jen1-logo.svg" alt="Jen1" width={72} height={72} priority className="h-7 w-auto object-contain" />
+          <Link href="/" className="flex-shrink-0 select-none pl-2" aria-label="Gen1 home">
+            <Image src="/gen1-logo.svg" alt="Gen1" width={72} height={72} priority className="h-7 w-auto object-contain" />
           </Link>
 
           <ul className="hidden md:flex items-center gap-1 font-display text-sm font-medium text-white/60 flex-shrink-0">

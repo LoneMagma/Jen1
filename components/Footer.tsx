@@ -12,7 +12,7 @@ export default function Footer() {
 
         {/* Left */}
         <div className="max-w-sm">
-          <p className="font-archivo font-black text-white/50 text-sm mb-2 tracking-tight">Jen1</p>
+          <p className="font-archivo font-black text-white/50 text-sm mb-2 tracking-tight">Gen1</p>
           <p className="text-white/25 text-[11px] leading-relaxed">
             Doesn't host anything. All streams are from third-party providers.
             Rights concern?{' '}
@@ -26,7 +26,7 @@ export default function Footer() {
         {/* Right */}
         <div className="flex items-center gap-5 text-[11px] text-white/20 flex-shrink-0">
           <a href="https://www.themoviedb.org" target="_blank" rel="noopener noreferrer" className="hover:text-white/45 transition-colors">TMDB</a>
-          <a href="https://videasy.net" target="_blank" rel="noopener noreferrer" className="hover:text-white/45 transition-colors">Videasy</a>
+          <a href="https://vidcore.org" target="_blank" rel="noopener noreferrer" className="hover:text-white/45 transition-colors">VidCore</a>
           <button
             onClick={() => setDisclosureOpen(true)}
             className="hover:text-white/45 transition-colors"

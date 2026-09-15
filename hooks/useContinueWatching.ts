@@ -14,13 +14,14 @@ export interface WatchEntry {
   episode?: number
   rating: number
   addedAt: number
-  // Real playback position in seconds, from Videasy's postMessage API.
-  // When Videasy is the active provider, VideoPlayer fires 'track-progress'
-  // events with the iframe's actual currentTime — so this is a genuine
-  // seek position, not a wall-clock estimate. For fallback providers
-  // (VidLink, Embed.su) that don't expose postMessage, it falls back to
-  // wall-clock time as before. Either way it's used for the progress bar
-  // on Continue Watching cards and the "Xm in" label.
+  // Real playback position in seconds, from the active provider's
+  // postMessage API — VidCore, VidSrc, and VidLink all expose one
+  // (see the postMessage handler in VideoPlayer.tsx for each one's
+  // exact event shape), so this is a genuine seek position, not a
+  // wall-clock estimate. If a provider is added later that doesn't
+  // expose postMessage, this falls back to wall-clock time instead.
+  // Either way it's used for the progress bar on Continue Watching
+  // cards and the "Xm in" label.
   elapsedSeconds?: number
 }
 

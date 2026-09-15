@@ -245,7 +245,7 @@ export default function DetailPage({ item, type, videos, credits, recommendation
             >
               {tab.label}
               {activeTab === tab.id && (
-                <span className="absolute bottom-0 left-4 right-4 h-[2px] bg-jen1-red rounded-full" />
+                <span className="absolute bottom-0 left-4 right-4 h-[2px] bg-gen1-red rounded-full" />
               )}
             </button>
           ))}
@@ -267,7 +267,7 @@ export default function DetailPage({ item, type, videos, credits, recommendation
                     </span>
                     <button
                       onClick={() => { setActiveTab('more'); loadFilmography() }}
-                      className="text-white/70 hover:text-jen1-red transition-colors font-medium text-left"
+                      className="text-white/70 hover:text-gen1-red transition-colors font-medium text-left"
                     >
                       {director.name}
                     </button>
@@ -318,7 +318,7 @@ export default function DetailPage({ item, type, videos, credits, recommendation
                     setPlayMode('stream'); setPlaying(true)
                     trackPlay(selectedSeason, selectedEpisode)
                   }}
-                  className="flex items-center gap-1.5 bg-jen1-red hover:bg-red-500 text-white font-semibold text-[13px] px-4 py-2 rounded-lg transition-all"
+                  className="flex items-center gap-1.5 bg-gen1-red hover:bg-red-500 text-white font-semibold text-[13px] px-4 py-2 rounded-lg transition-all"
                 >
                   <Play size={12} fill="currentColor" /> Play S{selectedSeason} E{selectedEpisode}
                 </button>
@@ -361,7 +361,7 @@ export default function DetailPage({ item, type, videos, credits, recommendation
                           </div>
                         )}
                         <div className={`absolute top-2 left-2 w-5 h-5 rounded flex items-center justify-center text-[10px] font-bold ${
-                          ep.episode_number === selectedEpisode ? 'bg-jen1-red text-white' : 'bg-black/70 text-white/50'
+                          ep.episode_number === selectedEpisode ? 'bg-gen1-red text-white' : 'bg-black/70 text-white/50'
                         }`}>
                           {ep.episode_number}
                         </div>

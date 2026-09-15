@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function TVPage() {
   return (
-    <main className="min-h-screen bg-jen1-black">
+    <main className="min-h-screen bg-gen1-black">
       <GlassHeader />
       <div className="pt-28 pb-24 px-8 md:px-14 lg:px-20">
         <Link

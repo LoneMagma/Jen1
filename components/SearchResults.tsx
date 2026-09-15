@@ -223,7 +223,7 @@ function SearchCard({ item, type, onOpen }: { item: Movie | TVShow; type: 'movie
         className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200"
         style={{ background: 'linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.5) 50%, rgba(10,10,10,0.1) 100%)' }}
       />
-      <div className="absolute inset-0 rounded-xl ring-1 ring-white/[0.07] group-hover:ring-jen1-red/35 transition-all duration-300 pointer-events-none z-10" />
+      <div className="absolute inset-0 rounded-xl ring-1 ring-white/[0.07] group-hover:ring-gen1-red/35 transition-all duration-300 pointer-events-none z-10" />
       <div className="absolute top-2 left-2 text-[9px] font-bold uppercase tracking-wider px-1.5 py-[3px] rounded bg-black/55 text-white/60 backdrop-blur-sm border border-white/08 z-10">
         {type === 'tv' ? 'Series' : 'Film'}
       </div>

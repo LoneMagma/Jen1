@@ -153,7 +153,7 @@ function MediaGridCard({ item, onOpen }: { item: MediaItem; onOpen: (item: Media
       />
 
       {/* Ring */}
-      <div className="absolute inset-0 rounded-xl ring-1 ring-white/[0.07] group-hover:ring-jen1-red/35 transition-all duration-300 pointer-events-none z-10" />
+      <div className="absolute inset-0 rounded-xl ring-1 ring-white/[0.07] group-hover:ring-gen1-red/35 transition-all duration-300 pointer-events-none z-10" />
 
       {/* Type badge */}
       <div className="absolute top-2 left-2 text-[9px] font-bold uppercase tracking-wider px-1.5 py-[3px] rounded bg-black/55 text-white/60 backdrop-blur-sm border border-white/08 z-10">

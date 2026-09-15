@@ -1,15 +1,21 @@
-# Jen1 — Cinematic Movie Discovery Platform
+# Gen1 — Cinematic Movie Discovery Platform
 
-A premium, immersive movie discovery and streaming experience powered by TMDB and Next.js 15.
+A premium, immersive movie discovery and streaming experience powered by
+TMDB and Next.js 15. (Renamed from Jen1 — see "Naming" below for what
+did and didn't change internally.)
 
 ## Stack
 
-- **Framework**: Next.js 15 (App Router, Server Components, Streaming)
+- **Framework**: Next.js 15 (App Router, Server Components)
 - **Language**: TypeScript
-- **Styling**: Tailwind CSS with custom cinematic design tokens
+- **Styling**: Tailwind CSS with custom design tokens (`gen1-red`,
+  `gen1-black`, etc. — see `tailwind.config.ts`)
 - **Data**: TMDB API v3
-- **Video**: Proxied embed providers (vidsrc.to + fallbacks)
-- **Deploy**: Vercel (zero-config)
+- **Video**: Client-side multi-provider embed with health-based
+  switching (see `lib/providerHealth.ts` and `components/VideoPlayer.tsx`)
+- **Deploy**: Cloudflare Workers via OpenNext (`wrangler.jsonc`) — not
+  a plain Vercel deploy, despite `SITE_URL` still pointing at a
+  `vercel.app` domain in a few places (see "Naming", below)
 
 ## Setup
 
@@ -24,10 +30,14 @@ npm install
 ```bash
 # Edit .env.local
 TMDB_API_KEY=your_tmdb_api_key_here
-VIDSRC_BASE=https://vidsrc.to/embed
 ```
 
 Get a free TMDB API key at: https://www.themoviedb.org/settings/api
+
+`VIDSRC_BASE` also exists in `.env.local` from an earlier provider
+setup but isn't read anywhere in the current code — `app/api/video/route.ts`
+is a stub; actual provider URLs are built client-side in
+`VideoPlayer.tsx`. Safe to remove, or leave for now.
 
 ### 3. Run locally
 
@@ -37,94 +47,125 @@ npm run dev
 
 Open http://localhost:3000
 
-## Deploy to Vercel
+### 4. Deploy
 
-1. Push to GitHub
-2. Import project at vercel.com
-3. Add env vars: `TMDB_API_KEY`, `VIDSRC_BASE`
-4. Deploy
+```bash
+npm run deploy
+```
 
-## Project Structure
+Builds and deploys to Cloudflare Workers via `@opennextjs/cloudflare`
+(see `package.json` scripts and `wrangler.jsonc`).
+
+## Project structure
 
 ```
-jen1/
+gen1/
 ├── app/
-│   ├── favicon.ico             # Auto-detected by Next.js App Router
-│   ├── layout.tsx              # Root layout, fonts, global providers
-│   ├── page.tsx                # Home — hero + all rows (server component)
-│   ├── globals.css             # Tailwind base + cinematic custom styles
+│   ├── layout.tsx              # Root layout, metadata, fonts
+│   ├── page.tsx                # Home
+│   ├── movie/[id]/page.tsx     # Movie detail
+│   ├── tv/[id]/page.tsx        # TV detail
+│   ├── movies/, tv/, trending/, search/, genre/[slug]/
+│   ├── sitemap.ts, robots.ts
 │   └── api/
 │       ├── tmdb/route.ts       # TMDB proxy (hides API key from client)
-│       └── video/route.ts      # Video stream proxy with provider fallbacks
+│       └── video/route.ts      # Stub — provider logic lives client-side now
 ├── components/
-│   ├── Navbar.tsx              # Fixed top nav with image logo + search
-│   ├── SearchBar.tsx           # Real-time search with dropdown
+│   ├── GlassHeader.tsx         # Fixed top nav
+│   ├── SearchBar.tsx, SearchOverlay.tsx, SearchResults.tsx
 │   ├── HeroBanner.tsx          # Auto-rotating featured hero
-│   ├── MovieRow.tsx            # Horizontal scroll row
-│   ├── MovieCard.tsx           # Poster card with hover effects
-│   ├── SkeletonRow.tsx         # Loading skeleton for rows
-│   ├── DetailModal.tsx         # Full metadata modal
-│   ├── VideoPlayer.tsx         # Stream/trailer player with fallbacks
+│   ├── MovieRow.tsx, MovieCard.tsx, MediaGrid.tsx
+│   ├── MoviesGrid.tsx, TVGrid.tsx, TrendingGrid.tsx, GenrePage.tsx
+│   ├── DetailModal.tsx, DetailPage.tsx
+│   ├── VideoPlayer.tsx         # Stream/trailer player, provider switching
+│   ├── ContinueWatching.tsx, WatchTracker.tsx
+│   ├── AIDisclosureDialog.tsx  # "AI & Ownership" — what's AI-assisted, what's not ours
+│   ├── KeyboardHelp.tsx
+│   ├── Footer.tsx, StructuredData.tsx
 │   └── Providers.tsx           # Global overlay mounter
+├── hooks/
+│   ├── useContinueWatching.ts, useSearchHistory.ts
+│   ├── useKeyboard.ts, useBodyScrollLock.ts
 ├── lib/
-│   └── tmdb.ts                 # Typed TMDB API client with ISR caching
-├── types/
-│   └── tmdb.ts                 # TypeScript interfaces
-└── public/
-    ├── jen1-logo.png           # Brand logo (navbar + favicon source)
-    ├── favicon.ico             # Generated from logo
-    ├── apple-touch-icon.png    # iOS home screen icon
-    └── og-image.png            # OpenGraph share image
+│   ├── tmdb.ts                 # Typed TMDB API client
+│   ├── providerLabels.ts       # Hostname → display name for the source picker
+│   └── providerHealth.ts       # Tracks provider success/failure, orders by track record
+└── types/
+    └── tmdb.ts
 ```
 
-## Roadmap (Scoped)
+## Video providers
 
-### In Scope — Next Build Phase
+`VideoPlayer.tsx` tries providers in order, falling back on stall or
+error. Currently: **VidCore**, **VidSrc**, **VidLink** — chosen because
+these three had fetchable, verifiable documentation at the time they
+were wired in, not because they're guaranteed ad-free or permanently
+the best option. All three are third-party iframes outside this
+project's control; `AIDisclosureDialog.tsx` says this plainly rather
+than promising something that can change on their end without a
+deploy on ours.
 
-**Provider Expansion** (`app/api/video/route.ts`)
-Add vidlink.pro, vidsrc.pro, 2embed.cc, videasy.net to the fallback array.
-Zero architectural change, instant coverage boost.
+**Videasy was removed.** Its own site confirmed it (and its mirror
+Vidking) shut down September 15, 2026 — this wasn't a preference
+change, the service is gone.
 
-**TV / Series Support**
-New TMDB endpoints for trending TV, popular series.
-Season/episode picker UI in DetailModal.
-Pass `?type=tv&season=1&episode=1` to the video API route (already wired for it).
+`lib/providerHealth.ts` tracks real success/failure per provider in
+localStorage (decayed over a week) and reorders the list on each play
+attempt so a provider with a bad recent track record isn't tried first
+by default. A stall gets one retry before the player moves to the next
+provider.
 
-**Better Stream Error UX**
-"Currently unavailable" state with friendly copy instead of a broken iframe.
-Optional "notify me" placeholder (no backend needed yet — just UI).
+### VidSrc: public mirror vs. custom domain
 
-**Performance: Row Caching**
-Vercel KV (or simple in-memory ISR) for popular row data.
-Reduces cold-start fetch time and TMDB rate-limit exposure.
+VidSrc's own docs state their public mirror domains (the ones in
+`vidsrcme.ru`'s own footer — `vidsrc2.ru`, `vidsrc.ir`, `vidsrcme.ru`,
+`vidsrcme.su`, `vidsrc-me.ru`, `vidsrc-me.su`, `vidsrc-embed.ru`,
+`vidsrc-embed.su`, `vsrc.su`) carry some ad load, and that pointing a
+custom domain at VidSrc cuts that "by 50%" — their own number, not
+independently verified, and explicitly **not** "zero ads."
 
-### Medium Term
+To use the custom-domain route:
 
-**Auth + Watchlist** (Clerk is the fastest path — one package, pre-built UI)
-Watchlist stored in Vercel KV per user.
-"Continue Watching" row on the home page.
+1. Pick a subdomain dedicated to the player (e.g. `play.yourdomain.com`)
+   — not your root domain, since step 3 requires a non-default SSL mode
+   you don't want on your main site's traffic.
+2. In Cloudflare DNS for that zone, add a CNAME record pointing that
+   subdomain at VidSrc's target host (check their current docs/
+   Announcements page for the exact value — it's stated to change).
+   Proxy status: **Proxied** (orange cloud on).
+3. In Cloudflare → SSL/TLS → Overview, set the encryption mode to
+   **Flexible** for that subdomain specifically. VidSrc's docs are
+   explicit that it must be Flexible, not Full or Full-strict, because
+   their origin serves plain HTTP.
+4. Once DNS propagates, set `NEXT_PUBLIC_VIDSRC_DOMAIN` in `.env.local`
+   (see the commented example already there) to your subdomain and
+   redeploy. Leave it unset to keep using the public mirror.
 
-**"More Like This"** row in DetailModal using TMDB `/movie/{id}/recommendations`.
-Zero backend work — pure TMDB.
+## Naming
 
-**Advanced Discovery**
-Genre filter pages (`/genre/[id]`)
-Year/rating/language filter bar
-Infinite scroll (replace static row with paginated fetch)
+This project was renamed from Jen1 to Gen1. What changed and what
+didn't, on purpose:
 
-**Native HLS Player** (hls.js)
-Replaces iframe embed for sources that expose direct `.m3u8` links.
-Enables quality switching, seek, subtitle tracks.
+- **Changed**: display name, page titles/metadata, the "AI & Ownership"
+  dialog copy, Tailwind color token prefix (`jen1-red` → `gen1-red`,
+  etc., across every component), and the two brand asset filenames
+  (`gen1-logo.svg`, `gen1-icon-512.png`).
+- **Not changed**: the `jen1.vercel.app` URL in `layout.tsx`,
+  `StructuredData.tsx`, `robots.ts`, and `sitemap.ts`; the `"jen1"`
+  name in `wrangler.jsonc`; and the `jen1:continue-watching` /
+  `jen1:search-history` / `jen1_provider_health` localStorage keys.
 
-### Out of Scope (for now)
+  The URL and Workers project name are deployment identity — changing
+  them in code doesn't move the actual deployment, so they'd just be
+  wrong until the real Cloudflare/DNS side is renamed too. The
+  localStorage keys are load-bearing for existing visitors: renaming
+  them would silently wipe everyone's saved Continue Watching progress
+  and search history on their next visit. Update these once the actual
+  deployment is renamed, and treat the storage keys as a one-way
+  migration (write a small migration on load, don't just rename) if
+  they ever need to change.
 
-- Admin dashboard / manual curation
-- PWA / offline support
-- Ad integration or monetization tier
-- Multi-language UI
-- Analytics pipeline
-- Separate scraper microservice (only worth it at scale)
-
-## Keyboard Shortcuts
+## Keyboard shortcuts
 
 - `Esc` — Close modal or exit player
+- See `KeyboardHelp.tsx` / `hooks/useKeyboard.ts` for the full registry

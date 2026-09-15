@@ -8,7 +8,7 @@ export default function StructuredData() {
   const websiteSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'Jen1',
+    name: 'Gen1',
     url: SITE_URL,
     description: 'Discover and stream movies and series — a cinematic experience built for the discerning viewer.',
     potentialAction: {
@@ -24,9 +24,9 @@ export default function StructuredData() {
   const orgSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'Jen1',
+    name: 'Gen1',
     url: SITE_URL,
-    logo: `${SITE_URL}/jen1-icon-512.png`,
+    logo: `${SITE_URL}/gen1-icon-512.png`,
     sameAs: [],
   }
 

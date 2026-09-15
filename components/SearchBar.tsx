@@ -151,7 +151,7 @@ export default function SearchBar() {
           )}
           {loading && (
             <div className="flex items-center justify-center py-5">
-              <div className="w-4 h-4 border-2 border-jen1-red/50 border-t-jen1-red rounded-full animate-spin" />
+              <div className="w-4 h-4 border-2 border-gen1-red/50 border-t-gen1-red rounded-full animate-spin" />
             </div>
           )}
           {!loading && results.map((item, i) => (
@@ -169,7 +169,7 @@ export default function SearchBar() {
                 <div className="text-white/90 text-sm font-medium truncate">{getTitle(item as Movie | TVShow)}</div>
                 <div className="flex items-center gap-1.5 mt-0.5">
                   <span className={`text-[10px] px-1.5 py-0.5 rounded-full ${
-                    item._type === 'tv' ? 'bg-blue-500/15 text-blue-400' : 'bg-jen1-red/15 text-jen1-red'
+                    item._type === 'tv' ? 'bg-blue-500/15 text-blue-400' : 'bg-gen1-red/15 text-gen1-red'
                   }`}>
                     {item._type === 'tv' ? 'Series' : 'Film'}
                   </span>

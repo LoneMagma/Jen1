@@ -3,7 +3,7 @@
 //
 // The "AI & Ownership" disclosure — a small glass card, opened from the
 // footer, laying out plainly what was AI-assisted, what data/streams this
-// site pulls from third parties, and what Jen1 does and doesn't own.
+// site pulls from third parties, and what Gen1 does and doesn't own.
 
 import { useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -70,7 +70,7 @@ export default function AIDisclosureDialog({
               <section>
                 <h3 className="text-white/85 font-semibold mb-1.5">How this was built</h3>
                 <p>
-                  Jen1 is an independent, one-person project. Large parts of the code —
+                  Gen1 is an independent, one-person project. Large parts of the code —
                   components, styling, bug fixes, this dialog included — were written
                   with the help of Claude (Anthropic). Nothing here pretends otherwise;
                   the developer directs and reviews the work, but AI assistance is a
@@ -79,10 +79,10 @@ export default function AIDisclosureDialog({
               </section>
 
               <section>
-                <h3 className="text-white/85 font-semibold mb-1.5">What Jen1 doesn't own</h3>
+                <h3 className="text-white/85 font-semibold mb-1.5">What Gen1 doesn't own</h3>
                 <p>
-                  Jen1 doesn't host any video files. Streams are loaded from third-party
-                  embed providers (Videasy, VidLink, Embed.su) inside an iframe — Jen1
+                  Gen1 doesn't host any video files. Streams are loaded from third-party
+                  embed providers (VidCore, VidSrc, VidLink) inside an iframe — Gen1
                   has no control over their servers, ads, or availability, and no stake
                   in the content itself. Movie and show data, posters, and metadata come
                   from{' '}

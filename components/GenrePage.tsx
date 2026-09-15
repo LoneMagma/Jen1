@@ -87,7 +87,7 @@ export default function GenrePage({ genreId, genreName, slug }: GenrePageProps) 
     window.dispatchEvent(new CustomEvent('open-movie', { detail: { id, type: 'movie' } }))
 
   return (
-    <div className="min-h-screen bg-jen1-black pt-20 pb-24 px-8 md:px-14 lg:px-20">
+    <div className="min-h-screen bg-gen1-black pt-20 pb-24 px-8 md:px-14 lg:px-20">
       {/* Header */}
       <div className="flex items-start justify-between mb-8 gap-4">
         <div>
@@ -112,7 +112,7 @@ export default function GenrePage({ genreId, genreName, slug }: GenrePageProps) 
           onClick={() => setShowFilters(v => !v)}
           className={`flex items-center gap-2 px-4 py-2 rounded-xl border text-sm transition-all mt-10 ${
             showFilters || minRating > 0
-              ? 'bg-jen1-red/15 border-jen1-red/30 text-jen1-red'
+              ? 'bg-gen1-red/15 border-gen1-red/30 text-gen1-red'
               : 'bg-white/06 border-white/10 text-white/50 hover:text-white hover:bg-white/10'
           }`}
         >
@@ -133,7 +133,7 @@ export default function GenrePage({ genreId, genreName, slug }: GenrePageProps) 
                   onClick={() => setSort(opt)}
                   className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                     sort === opt
-                      ? 'bg-jen1-red text-white'
+                      ? 'bg-gen1-red text-white'
                       : 'bg-white/06 text-white/50 hover:text-white hover:bg-white/12 border border-white/08'
                   }`}
                 >
@@ -146,7 +146,7 @@ export default function GenrePage({ genreId, genreName, slug }: GenrePageProps) 
           {/* Min rating */}
           <div>
             <div className="text-white/30 text-xs uppercase tracking-wider mb-3">
-              Min Rating {minRating > 0 ? <span className="text-jen1-red">★ {minRating}+</span> : ''}
+              Min Rating {minRating > 0 ? <span className="text-gen1-red">★ {minRating}+</span> : ''}
             </div>
             <div className="flex gap-2">
               {[0, 6, 7, 7.5, 8].map(r => (
@@ -155,7 +155,7 @@ export default function GenrePage({ genreId, genreName, slug }: GenrePageProps) 
                   onClick={() => setMinRating(r)}
                   className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                     minRating === r
-                      ? 'bg-jen1-red text-white'
+                      ? 'bg-gen1-red text-white'
                       : 'bg-white/06 text-white/50 hover:text-white hover:bg-white/12 border border-white/08'
                   }`}
                 >
@@ -240,7 +240,7 @@ function GenreCard({ movie, onOpen }: { movie: Movie; onOpen: (id: number) => vo
         style={{ background: 'linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.5) 50%, rgba(10,10,10,0.1) 100%)' }}
       />
       {/* Ring */}
-      <div className="absolute inset-0 rounded-xl ring-1 ring-white/[0.07] group-hover:ring-jen1-red/35 transition-all duration-300 pointer-events-none z-10" />
+      <div className="absolute inset-0 rounded-xl ring-1 ring-white/[0.07] group-hover:ring-gen1-red/35 transition-all duration-300 pointer-events-none z-10" />
       {/* Bottom info */}
       <div className="absolute bottom-0 left-0 right-0 p-3 z-10">
         <div className="font-archivo font-bold text-[13px] leading-tight text-white truncate mb-0.5">{movie.title}</div>

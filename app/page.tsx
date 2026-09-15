@@ -52,7 +52,7 @@ export default async function HomePage() {
   } = await getAllContent()
 
   return (
-    <main className="min-h-screen bg-jen1-black">
+    <main className="min-h-screen bg-gen1-black">
       <GlassHeader />
 
       {/* Hero with skeleton fallback */}

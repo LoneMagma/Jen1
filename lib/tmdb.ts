@@ -6,7 +6,7 @@ const BASE_URL = 'https://api.themoviedb.org/3'
 export const IMG_BASE = 'https://image.tmdb.org/t/p'
 
 if (!API_KEY) {
-  console.warn('[Jen1] TMDB_API_KEY is not set. Add it to .env.local')
+  console.warn('[Gen1] TMDB_API_KEY is not set. Add it to .env.local')
 }
 
 async function tmdbFetch<T>(path: string, params: string = ''): Promise<T> {

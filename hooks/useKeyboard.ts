@@ -1,5 +1,5 @@
 // hooks/useKeyboard.ts
-// Central keyboard shortcut registry for Jen1.
+// Central keyboard shortcut registry for Gen1.
 // Each component registers its own handlers via this hook — no global spaghetti.
 
 import { useEffect, useRef } from 'react'

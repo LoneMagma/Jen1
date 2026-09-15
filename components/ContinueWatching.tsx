@@ -25,7 +25,7 @@ export default function ContinueWatching() {
   return (
     <div className="mb-2">
       <div className="flex items-center gap-2.5 mb-3.5">
-        <div className="w-0.5 h-5 bg-jen1-red rounded-full flex-shrink-0" />
+        <div className="w-0.5 h-5 bg-gen1-red rounded-full flex-shrink-0" />
         <h2 className="font-archivo font-extrabold text-display-md text-white">Continue Watching</h2>
       </div>
       <div className="flex gap-3 overflow-x-auto pb-2 row-scroll">
@@ -40,7 +40,7 @@ export default function ContinueWatching() {
           >
             {/* Poster */}
             <div
-              className="relative w-full h-[222px] rounded-xl overflow-hidden transition-all duration-200 group-hover:-translate-y-1.5 jen1-card-shadow"
+              className="relative w-full h-[222px] rounded-xl overflow-hidden transition-all duration-200 group-hover:-translate-y-1.5 gen1-card-shadow"
             >
               <Image
                 src={posterUrl(entry.posterPath)}
@@ -55,7 +55,7 @@ export default function ContinueWatching() {
                 {/* Resume button */}
                 <button
                   onClick={e => resume(entry, e)}
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11 h-11 bg-jen1-red rounded-full flex items-center justify-center scale-0 group-hover:scale-100 transition-transform duration-200 shadow-lg hover:bg-red-500"
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11 h-11 bg-gen1-red rounded-full flex items-center justify-center scale-0 group-hover:scale-100 transition-transform duration-200 shadow-lg hover:bg-red-500"
                   aria-label="Resume"
                 >
                   <Play size={15} fill="white" className="ml-0.5" />
@@ -88,7 +88,7 @@ export default function ContinueWatching() {
               {!!entry.elapsedSeconds && entry.elapsedSeconds >= 60 && (
                 <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-black/40">
                   <div
-                    className="h-full bg-jen1-red"
+                    className="h-full bg-gen1-red"
                     style={{ width: `${Math.min(90, (entry.elapsedSeconds / 1800) * 100)}%` }}
                   />
                 </div>

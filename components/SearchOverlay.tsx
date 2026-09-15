@@ -154,7 +154,7 @@ export default function SearchOverlay({
             <div className="flex-1 overflow-y-auto px-5 py-4">
               {loading && (
                 <div className="flex items-center justify-center py-10">
-                  <div className="w-5 h-5 border-2 border-jen1-red/40 border-t-jen1-red rounded-full animate-spin" />
+                  <div className="w-5 h-5 border-2 border-gen1-red/40 border-t-gen1-red rounded-full animate-spin" />
                 </div>
               )}
 
@@ -209,7 +209,7 @@ export default function SearchOverlay({
                         </div>
                         <div className="flex items-center gap-1.5 mt-1">
                           <span className={`text-[9px] px-1.5 py-0.5 rounded-full font-medium ${
-                            item._type === 'tv' ? 'bg-blue-500/15 text-blue-400' : 'bg-jen1-red/15 text-jen1-red'
+                            item._type === 'tv' ? 'bg-blue-500/15 text-blue-400' : 'bg-gen1-red/15 text-gen1-red'
                           }`}>
                             {item._type === 'tv' ? 'Series' : 'Film'}
                           </span>

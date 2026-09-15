@@ -50,7 +50,7 @@ export default function MovieCard({ item, mediaType, rank }: MovieCardProps) {
 
   return (
     <div
-      className="jen1-card group relative flex-shrink-0 cursor-pointer"
+      className="gen1-card group relative flex-shrink-0 cursor-pointer"
       style={{ width: 'var(--card-w, 320px)', height: 'var(--card-h, 180px)' }}
       onMouseEnter={enter}
       onMouseLeave={leave}
@@ -120,7 +120,7 @@ export default function MovieCard({ item, mediaType, rank }: MovieCardProps) {
       {/* Top-right badges */}
       <div className="absolute top-2.5 right-2.5 z-[4] flex flex-col items-end gap-1">
         {_isNew && (
-          <span className="bg-jen1-red text-white text-[9px] font-bold uppercase tracking-wider px-2 py-[3px] rounded-full">
+          <span className="bg-gen1-red text-white text-[9px] font-bold uppercase tracking-wider px-2 py-[3px] rounded-full">
             New
           </span>
         )}

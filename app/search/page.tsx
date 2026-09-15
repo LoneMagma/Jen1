@@ -18,7 +18,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
 export default async function SearchPage({ searchParams }: Props) {
   const { q } = await searchParams
   return (
-    <main className="min-h-screen bg-jen1-black">
+    <main className="min-h-screen bg-gen1-black">
       <GlassHeader />
       <SearchResults query={q ?? ''} />
     </main>
